@@ -14,23 +14,37 @@ let myLibrary = [
 ];
 
 const heroPlaceholder = document.querySelector("#hero-template");
-let addbutton = document.querySelector("button");
-addbutton.addEventListener("click", addBookToLibrary);
+
+// addBookToLibrary();
 
 // get the table
 
 const table = document.querySelector("tr");
 
-function Book() {
+function Book(title, author, pages, read) {
   // the constructor...
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
-function addBookToLibrary() {
-  // do stuff here
-  let book = document.getElementById("book").value;
-  myLibrary.push(book);
+// function addBookToLibrary() {
+// do stuff here
+const submitBtn = document.querySelector(".submit");
+
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const titleInput = document.querySelector("#title").value;
+  const authorInput = document.querySelector("#author").value;
+  const pagesInput = document.querySelector("#pages").value;
+  const readInput = document.querySelector("#read").value;
+  const newBook = new Book(titleInput, authorInput, pagesInput, readInput);
+  console.log(newBook.length);
+  myLibrary.push(newBook);
   console.log(myLibrary);
-}
+});
+// }
 
 function displayBook() {
   const list = document.createElement("ul");
@@ -41,7 +55,7 @@ function displayBook() {
   for (let i = 0; i < myLibrary.length; i++) {
     const heroCard = document.importNode(template.content, true);
     const removeButton = heroCard.querySelector(".remove");
-    const readStatus =heroCard.querySelector(".read")
+    const readStatus = heroCard.querySelector(".read");
     heroCard.querySelector("li").setAttribute("data-num", i);
     heroCard.querySelector(".card-title").textContent = myLibrary[i].title;
     heroCard.querySelector(".card-text").textContent = myLibrary[i].author;
@@ -52,8 +66,6 @@ function displayBook() {
     readStatus.textContent = myLibrary[i].read;
     readStatus.addEventListener("click", () => {
       changeReadStatus(readStatus);
-      
-
     });
     console.log(myLibrary[i].author);
     list.appendChild(heroCard);
@@ -86,17 +98,15 @@ window.onclick = function (e) {
   }
 };
 // To change the read staus of the book
- function changeReadStatus(read)
- {      //const read= document.querySelector(".read");
+function changeReadStatus(read) {
+  //const read= document.querySelector(".read");
 
-   if (read.innerHTML === "true")
-   {
-    
+  if (read.innerHTML === "true") {
+    read.textContent = "false";
+  } else {
+    read.textContent = "true";
+  }
+}
 
-     read.textContent= "false";
-   }
-   else
-   {
-    read.textContent= "true";
-   }
- }
+//set the local storage
+localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
