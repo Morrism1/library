@@ -3,13 +3,13 @@ let myLibrary = [
     title: "Been through Hell",
     author: "John Smith",
     pages: 220,
-    read: "Sure Soon",
+    read: false,
   },
   {
     title: "Good life",
     author: "Jane Smith",
     pages: 120,
-    read: "Well Well",
+    read: false,
   },
 ];
 
@@ -40,13 +40,20 @@ function displayBook() {
 
   for (let i = 0; i < myLibrary.length; i++) {
     const heroCard = document.importNode(template.content, true);
-    const removeButton = heroCard.querySelector("button");
+    const removeButton = heroCard.querySelector(".remove");
+    const readStatus =heroCard.querySelector(".read")
     heroCard.querySelector("li").setAttribute("data-num", i);
     heroCard.querySelector(".card-title").textContent = myLibrary[i].title;
     heroCard.querySelector(".card-text").textContent = myLibrary[i].author;
     removeButton.textContent = "Remove book";
     removeButton.addEventListener("click", () => {
       document.querySelector(`[data-num="${i}"]`).remove();
+    });
+    readStatus.textContent = myLibrary[i].read;
+    readStatus.addEventListener("click", () => {
+      changeReadStatus(readStatus);
+      
+
     });
     console.log(myLibrary[i].author);
     list.appendChild(heroCard);
@@ -78,3 +85,18 @@ window.onclick = function (e) {
     modal.style.display = "none";
   }
 };
+// To change the read staus of the book
+ function changeReadStatus(read)
+ {      //const read= document.querySelector(".read");
+
+   if (read.innerHTML === "true")
+   {
+    
+
+     read.textContent= "false";
+   }
+   else
+   {
+    read.textContent= "true";
+   }
+ }
