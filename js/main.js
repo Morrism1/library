@@ -5,13 +5,13 @@ let myLibrary = [
     title: 'Been through Hell',
     author: 'John Smith',
     pages: 220,
-    read: "No",
+    read: 'No',
   },
   {
     title: 'Good life',
     author: 'Jane Smith',
     pages: 120,
-    read: "No",
+    read: 'No',
   },
 ];
 
@@ -21,10 +21,7 @@ function setLibrary() {
 const heroPlaceholder = document.querySelector('#hero-template');
 
 
-
 function changeReadStatus(read) {
-  
-
   if (read.textContent === 'Yes') {
     read.textContent = 'No';
     read.classList.remove('btn-primary');
@@ -37,7 +34,6 @@ function changeReadStatus(read) {
 }
 
 function Book(title, author, pages, read) {
-
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -46,7 +42,7 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(e) {
   e.preventDefault();
- 
+
 
   const titleInput = document.querySelector('#title').value;
   const authorInput = document.querySelector('#author').value;
@@ -94,7 +90,6 @@ function displayBook() {
 
   heroPlaceholder.replaceWith(list);
 }
-
 
 
 const modal = document.querySelector('#myModal');
