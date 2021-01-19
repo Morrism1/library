@@ -15,27 +15,34 @@ let myLibrary = [
   },
 ];
 
-
 function validateForm() {
-  let x = document.forms["form"]["title"].value;
-  let y = document.forms["form"]["author"].value;
-  let z = document.forms["form"]["pages"].value;
-  if (x == "") {
- return false;
+  const x = document.forms.form.title.value;
+  const y = document.forms.form.author.value;
+  const z = document.forms.form.pages.value;
+  const spanMessage = document.querySelector('.message');
+  if (x === '') {
+    spanMessage.innerHTML = 'Please fill the Tittle field';
+    spanMessage.classList.add('alert', 'alert-danger');
+    return false;
   }
-  if (y == "")  {
+  if (y === '') {
+    spanMessage.innerHTML = 'Please fill the Author field';
+    spanMessage.classList.add('alert', 'alert-danger');
+
     return false;
-     }
-  if ((z == "") && (z <= 0)) {
+  }
+  if (z === '' || z <= 0) {
+    spanMessage.innerHTML = 'Please fill the Number field the right way!';
+    spanMessage.classList.add('alert', 'alert-danger');
+
     return false;
-       }
+  }
   return true;
 }
 function setLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 const heroPlaceholder = document.querySelector('#hero-template');
-
 
 function changeReadStatus(read) {
   if (read.textContent === 'Yes') {
@@ -58,21 +65,19 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(e) {
   e.preventDefault();
-  
 
   const titleInput = document.querySelector('#title').value;
   const authorInput = document.querySelector('#author').value;
   const pagesInput = document.querySelector('#pages').value;
   const readInput = document.querySelector('#read').value;
   const newBook = new Book(titleInput, authorInput, pagesInput, readInput);
-  console.log(validateForm());
-if (validateForm())
-{
-  myLibrary.push(newBook);
-  setLibrary();
-  
-  window.location.reload();
-}
+
+  if (validateForm()) {
+    myLibrary.push(newBook);
+    setLibrary();
+
+    window.location.reload();
+  }
 }
 
 function displayBook() {
@@ -110,7 +115,6 @@ function displayBook() {
 
   heroPlaceholder.replaceWith(list);
 }
-
 
 const modal = document.querySelector('#myModal');
 

@@ -12,7 +12,6 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    
     <template id="hero-template">
       <li>
         <div class="container">
@@ -28,12 +27,12 @@
                   >
                     <h5 class="card-title"></h5>
                     <p>Author <span class="card-text pl-4"></span></p>
-                    
+
                     <p>N0 pages <span class="card-pages pl-2"></span></p>
-                  
+
                     <div class="mb-4">
-                    <span>Is read?</span>
-                    <button class="btn btn-primary read ml-4"></button>
+                      <span>Is read?</span>
+                      <button class="btn btn-primary read ml-4"></button>
                     </div>
                     <button class="btn btn-danger remove"></button>
                   </div>
@@ -52,6 +51,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
+        <span class="ml-5 message"></span>
         <form action="" name="form">
           <div class="form-group">
             <label for="title">Title:</label>
@@ -80,8 +80,9 @@
               class="form-control"
               placeholder="Enter number of pages"
               id="pages"
-              min = "1"
+              min="1"
               name="pages"
+              onKeyDown="return false"
             />
           </div>
           <div class="form-group">
@@ -90,7 +91,6 @@
               <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>
-           
           </div>
 
           <button type="submit" class="btn btn-primary submit">Add</button>
