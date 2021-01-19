@@ -1,23 +1,25 @@
-const submitBtn = document.querySelector(".submit");
+const submitBtn = document.querySelector('.submit');
 
-submitBtn.addEventListener("click", addBookToLibrary);
 
 let myLibrary = [
   {
-    title: "Been through Hell",
-    author: "John Smith",
+    title: 'Been through Hell',
+    author: 'John Smith',
     pages: 220,
     read: false,
   },
   {
-    title: "Good life",
-    author: "Jane Smith",
+    title: 'Good life',
+    author: 'Jane Smith',
     pages: 120,
     read: false,
   },
 ];
-
-const heroPlaceholder = document.querySelector("#hero-template");
+// set the local storage
+function setLibrary() {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+const heroPlaceholder = document.querySelector('#hero-template');
 
 // addBookToLibrary();
 
@@ -26,16 +28,14 @@ const heroPlaceholder = document.querySelector("#hero-template");
 function changeReadStatus(read) {
   // const read= document.querySelector(".read");
 
-  if (read.textContent === "True") {
-    
-    read.textContent = "False";
-    read.classList.remove("btn-primary")
-   read.classList.add("btn-warning")
+  if (read.textContent === 'True') {
+    read.textContent = 'False';
+    read.classList.remove('btn-primary');
+    read.classList.add('btn-warning');
   } else {
-   
-    read.textContent = "True";
-    read.classList.remove("btn-primary", "btn-warning")
-    read.classList.add("btn-success")
+    read.textContent = 'True';
+    read.classList.remove('btn-primary', 'btn-warning');
+    read.classList.add('btn-success');
   }
 }
 
@@ -51,40 +51,40 @@ function addBookToLibrary(e) {
   e.preventDefault();
   // do stuff here
 
-  const titleInput = document.querySelector("#title").value;
-  const authorInput = document.querySelector("#author").value;
-  const pagesInput = document.querySelector("#pages").value;
-  const readInput = document.querySelector("#read").value;
+  const titleInput = document.querySelector('#title').value;
+  const authorInput = document.querySelector('#author').value;
+  const pagesInput = document.querySelector('#pages').value;
+  const readInput = document.querySelector('#read').value;
   const newBook = new Book(titleInput, authorInput, pagesInput, readInput);
 
   myLibrary.push(newBook);
   setLibrary();
-  location.reload();
+  window.location.reload();
 }
 
 function displayBook() {
-  const list = document.createElement("ul");
-  list.classList.add("list", "hero-list");
+  const list = document.createElement('ul');
+  list.classList.add('list', 'hero-list');
 
-  const template = document.querySelector("#hero-template");
+  const template = document.querySelector('#hero-template');
 
   for (let i = 0; i < myLibrary.length; i += 1) {
     const heroCard = document.importNode(template.content, true);
-    const removeButton = heroCard.querySelector(".remove");
-    const readStatus = heroCard.querySelector(".read");
-    const bookCard = heroCard.querySelector("li");
-    bookCard.setAttribute("data-num", i);
-    heroCard.querySelector(".card-title").textContent = myLibrary[i].title;
-    heroCard.querySelector(".card-text").textContent = myLibrary[i].author;
-    heroCard.querySelector(".card-pages").textContent = myLibrary[i].pages;
-    removeButton.textContent = "Remove book";
-    removeButton.addEventListener("click", () => {
+    const removeButton = heroCard.querySelector('.remove');
+    const readStatus = heroCard.querySelector('.read');
+    const bookCard = heroCard.querySelector('li');
+    bookCard.setAttribute('data-num', i);
+    heroCard.querySelector('.card-title').textContent = myLibrary[i].title;
+    heroCard.querySelector('.card-text').textContent = myLibrary[i].author;
+    heroCard.querySelector('.card-pages').textContent = myLibrary[i].pages;
+    removeButton.textContent = 'Remove book';
+    removeButton.addEventListener('click', () => {
       list.removeChild(bookCard);
       myLibrary.splice(myLibrary[i], 1);
       setLibrary();
     });
     readStatus.textContent = myLibrary[i].read;
-    readStatus.addEventListener("click", () => {
+    readStatus.addEventListener('click', () => {
       changeReadStatus(readStatus);
     });
 
@@ -97,41 +97,36 @@ function displayBook() {
 
 // create modal
 // 1. get all elements
-const modal = document.querySelector("#myModal");
+const modal = document.querySelector('#myModal');
 
-const modalBtn = document.querySelector("#myBtn");
-const closeModal = document.querySelector(".close");
+const modalBtn = document.querySelector('#myBtn');
+const closeModal = document.querySelector('.close');
 
 // open the modal
-modalBtn.addEventListener("click", () => {
-  modal.style.display = "block";
+modalBtn.addEventListener('click', () => {
+  modal.style.display = 'block';
 });
 
-closeModal.addEventListener("click", () => {
-  modal.style.display = "none";
- 
+closeModal.addEventListener('click', () => {
+  modal.style.display = 'none';
 });
 
 window.onclick = function modalwrite(e) {
   if (e.target === modal) {
-    modal.style.display = "none";
+    modal.style.display = 'none';
   }
 };
 
-// set the local storage
-function setLibrary() {
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-}
 
 function getData() {
   if (!localStorage.myLibrary) {
     displayBook();
   } else {
-    let data = localStorage.getItem("myLibrary");
+    let data = localStorage.getItem('myLibrary');
     data = JSON.parse(data);
     myLibrary = data;
     displayBook();
   }
 }
-
+submitBtn.addEventListener('click', addBookToLibrary);
 getData();
