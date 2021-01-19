@@ -54,7 +54,6 @@ function addBookToLibrary(e) {
 
   myLibrary.push(newBook);
   setLibrary();
-  window.close();
 }
 
 function displayBook() {
