@@ -1,5 +1,5 @@
 # Library
-This project is a simple small library application built with HTML, CSS and Js.It can add a book with its details and displays them using a boot strap card.
+This project is a simple small library application built with HTML, CSS and Js.It can add a book with its details and displays them using a bootstrap card.
 ## Built With
 
 - HTML5

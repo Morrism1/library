@@ -15,6 +15,22 @@ let myLibrary = [
   },
 ];
 
+
+function validateForm() {
+  let x = document.forms["form"]["title"].value;
+  let y = document.forms["form"]["author"].value;
+  let z = document.forms["form"]["pages"].value;
+  if (x == "") {
+ return false;
+  }
+  if (y == "")  {
+    return false;
+     }
+  if ((z == "") && (z <= 0)) {
+    return false;
+       }
+  return true;
+}
 function setLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
@@ -42,17 +58,21 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(e) {
   e.preventDefault();
-
+  
 
   const titleInput = document.querySelector('#title').value;
   const authorInput = document.querySelector('#author').value;
   const pagesInput = document.querySelector('#pages').value;
   const readInput = document.querySelector('#read').value;
   const newBook = new Book(titleInput, authorInput, pagesInput, readInput);
-
+  console.log(validateForm());
+if (validateForm())
+{
   myLibrary.push(newBook);
   setLibrary();
+  
   window.location.reload();
+}
 }
 
 function displayBook() {
