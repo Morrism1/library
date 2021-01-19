@@ -1,6 +1,5 @@
 const submitBtn = document.querySelector('.submit');
 
-
 let myLibrary = [
   {
     title: 'Been through Hell',
@@ -67,6 +66,9 @@ function displayBook() {
   list.classList.add('list', 'hero-list');
 
   const template = document.querySelector('#hero-template');
+  function deleteCard(i) {
+    myLibrary.splice(myLibrary[i], 1);
+  }
 
   for (let i = 0; i < myLibrary.length; i += 1) {
     const heroCard = document.importNode(template.content, true);
@@ -80,7 +82,7 @@ function displayBook() {
     removeButton.textContent = 'Remove book';
     removeButton.addEventListener('click', () => {
       list.removeChild(bookCard);
-      myLibrary.splice(myLibrary[i], 1);
+      deleteCard(i);
       setLibrary();
     });
     readStatus.textContent = myLibrary[i].read;
@@ -116,7 +118,6 @@ window.onclick = function modalwrite(e) {
     modal.style.display = 'none';
   }
 };
-
 
 function getData() {
   if (!localStorage.myLibrary) {
