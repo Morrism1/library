@@ -60,6 +60,7 @@
               class="form-control"
               placeholder="Enter title"
               id="title"
+              required="true"
             />
           </div>
           <div class="form-group">
@@ -82,12 +83,11 @@
           </div>
           <div class="form-group">
             <label for="read">Read:</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Enter whether it is read or not"
-              id="read"
-            />
+            <select name="read" id="read" class="form-control">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+           
           </div>
 
           <button type="submit" class="btn btn-primary submit">Add</button>

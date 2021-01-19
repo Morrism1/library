@@ -5,41 +5,39 @@ let myLibrary = [
     title: 'Been through Hell',
     author: 'John Smith',
     pages: 220,
-    read: false,
+    read: "No",
   },
   {
     title: 'Good life',
     author: 'Jane Smith',
     pages: 120,
-    read: false,
+    read: "No",
   },
 ];
-// set the local storage
+
 function setLibrary() {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 const heroPlaceholder = document.querySelector('#hero-template');
 
-// addBookToLibrary();
 
-// get the table
-// To change the read staus of the book
+
 function changeReadStatus(read) {
-  // const read= document.querySelector(".read");
+  
 
-  if (read.textContent === 'True') {
-    read.textContent = 'False';
+  if (read.textContent === 'Yes') {
+    read.textContent = 'No';
     read.classList.remove('btn-primary');
     read.classList.add('btn-warning');
   } else {
-    read.textContent = 'True';
+    read.textContent = 'Yes';
     read.classList.remove('btn-primary', 'btn-warning');
     read.classList.add('btn-success');
   }
 }
 
 function Book(title, author, pages, read) {
-  // the constructor...
+
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -48,7 +46,7 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(e) {
   e.preventDefault();
-  // do stuff here
+ 
 
   const titleInput = document.querySelector('#title').value;
   const authorInput = document.querySelector('#author').value;
@@ -97,14 +95,13 @@ function displayBook() {
   heroPlaceholder.replaceWith(list);
 }
 
-// create modal
-// 1. get all elements
+
+
 const modal = document.querySelector('#myModal');
 
 const modalBtn = document.querySelector('#myBtn');
 const closeModal = document.querySelector('.close');
 
-// open the modal
 modalBtn.addEventListener('click', () => {
   modal.style.display = 'block';
 });
