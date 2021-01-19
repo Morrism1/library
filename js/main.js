@@ -45,7 +45,6 @@ function addBookToLibrary(e) {
   e.preventDefault();
   // do stuff here
 
-  e.preventDefault();
   const titleInput = document.querySelector("#title").value;
   const authorInput = document.querySelector("#author").value;
   const pagesInput = document.querySelector("#pages").value;
