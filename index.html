@@ -12,8 +12,7 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <input type="text" id="book" />
-    <button type="button" class="add" value="Add book">Add Book</button>
+    
     <template id="hero-template">
       <li>
         <div class="container">
@@ -28,9 +27,15 @@
                     aria-labelledby="one-tab"
                   >
                     <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                    <button class="btn btn-primary remove"></button>
-                    <button class="btn btn-primary read"></button>
+                    <p>Author <span class="card-text pl-4"></span></p>
+                    
+                    <p>N0 pages <span class="card-pages pl-2"></span></p>
+                  
+                    <div class="mb-4">
+                    <span>Is read?</span>
+                    <button class="btn btn-primary read ml-4"></button>
+                    </div>
+                    <button class="btn btn-danger remove"></button>
                   </div>
                 </div>
               </div>
@@ -40,7 +45,7 @@
       </li>
     </template>
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Open Modal</button>
+    <button id="myBtn" class="btn btn-primary">Add Book Form</button>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">

@@ -26,10 +26,16 @@ const heroPlaceholder = document.querySelector("#hero-template");
 function changeReadStatus(read) {
   // const read= document.querySelector(".read");
 
-  if (read.innerHTML === "true") {
-    read.textContent = "false";
+  if (read.textContent === "True") {
+    
+    read.textContent = "False";
+    read.classList.remove("btn-primary")
+   read.classList.add("btn-warning")
   } else {
-    read.textContent = "true";
+   
+    read.textContent = "True";
+    read.classList.remove("btn-primary", "btn-warning")
+    read.classList.add("btn-success")
   }
 }
 
@@ -53,6 +59,7 @@ function addBookToLibrary(e) {
 
   myLibrary.push(newBook);
   setLibrary();
+  location.reload();
 }
 
 function displayBook() {
@@ -69,6 +76,7 @@ function displayBook() {
     bookCard.setAttribute("data-num", i);
     heroCard.querySelector(".card-title").textContent = myLibrary[i].title;
     heroCard.querySelector(".card-text").textContent = myLibrary[i].author;
+    heroCard.querySelector(".card-pages").textContent = myLibrary[i].pages;
     removeButton.textContent = "Remove book";
     removeButton.addEventListener("click", () => {
       list.removeChild(bookCard);
@@ -101,6 +109,7 @@ modalBtn.addEventListener("click", () => {
 
 closeModal.addEventListener("click", () => {
   modal.style.display = "none";
+ 
 });
 
 window.onclick = function modalwrite(e) {
